@@ -1,26 +1,25 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+
+import React, { Component } from "react";
+import Sound from "react-sound";
+import gymnopedieMp3 from "./assets/gymnopedieno1.mp3";
 
 class App extends Component {
+  state = { audioPosition: 0 };
+
+  resetAudio = () => {
+    this.setState({ audioPosition: 0 });
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Sound
+        url={gymnopedieMp3}
+        autoPlay={true}
+        playFromPosition={this.state.audioPosition}
+        playStatus={Sound.status.PLAYING}
+        onFinishedPlaying={this.resetAudio}
+      />
     );
   }
 }
