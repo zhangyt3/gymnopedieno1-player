@@ -1,26 +1,27 @@
-import "./App.css";
+import './App.css';
 
-import React, { Component } from "react";
-import Sound from "react-sound";
-import gymnopedieMp3 from "./assets/gymnopedieno1.mp3";
+import React, {Component} from 'react';
+import Sound from 'react-sound';
+import gymnopedieMp3 from './assets/gymnopedieno1.mp3';
 
 class App extends Component {
-  state = { started: false, audioPosition: 0 };
+  state = {started: false, audioPosition: 0};
 
   startAudio = () => {
     if (!this.state.started) {
-      this.setState({ started: true });
+      document.getElementById('start-button').style.display = 'none';
+      this.setState({started: true});
     }
   };
 
   resetAudio = () => {
-    this.setState({ audioPosition: 0 });
+    this.setState({audioPosition: 0});
   };
 
   render() {
     return (
       <div>
-        <button onClick={this.startAudio}>Start</button>
+        <button id='start-button' onClick={this.startAudio}>Start</button>
         <Sound
           url={gymnopedieMp3}
           playFromPosition={this.state.audioPosition}
